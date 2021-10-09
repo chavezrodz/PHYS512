@@ -1,0 +1,76 @@
+	Problem 1
+
+        Simple Method Results
+          Standard error: 1.226e-04
+          Function calls: 792
+          Function calls/step: 4.0
+        
+
+        Modified Method Results
+          Standard error: 9.138e-06
+          Function calls: 792
+          Function calls/step: 12.0
+        
+
+        We find that using the same number of function calls,
+        the modified rk4 has a standard error 7.451e-02 smaller
+        
+	Problem 2
+
+        a)
+        We use Radau solver in order to be able to handle a stiff ODE
+        
+
+        b)
+        We note that the Pb206/U238 ratio approaches 1 after one
+        U238 half life, which makes sense if we neglect all other products,
+        half of the U238 would be Pb206 then.
+        
+
+        We recompute the ODE to zoom in the Th230/U234 interesting region
+        before the ratio stabilizes
+        
+	Problem 3
+
+        a)
+        We rearrange the equation as follows:
+        z = z0 + a * ((x - x_0)^2 + (y - y_0)^2)
+        z = z0 + a * (x^2 + y^2 -2*x*x_0 - 2*y*y_0 + x_0^2 + y_0^2)
+        z = (z0 + a*(x_0^2 + y_0^2)) + a * (x^2 + y^2) - 2*a*x*x_0 - 2*a*y*y_0
+
+        z = p0 + p1*(x^2 + y^2) - 2*p2*x - 2*p3*y
+        
+        where the new parameters are given by:        
+        p0 = (z0 + a*(x_0^2 + y_0^2))
+        p1 = a
+        p2 = a*x_0
+        p3 = a*y_0
+        
+Initial chisq: 9899093557403536.0
+Final chisq: 6745.17868166424
+
+        b)
+        We carry out the fit, and find the paramters to be:
+        p0 = -1512.311816673906
+        p1 = 0.00016670445477401328
+        p2 = -0.0002267995139897326
+        p3 = 0.009705779426317989
+
+        Which, in previous paramters correspond to:
+        a = 0.00016670445477401328 mm
+        x0 = -1.360488622197799 mm
+        y0 = 58.22147608157964 mm
+        z0 = -1512.8772100367867 mm
+        
+
+        c)
+        From the noise estimate:
+        Parameter a estimate: (1.6670e-04 +- 6.4519e-08) mm
+
+        we have that f = 1/(4a)
+
+        From the first order taylor expansion:
+        f_err = f * a_error/a
+
+        Focal length estimate: (1.4997e+00 +- 5.8041e-04)m
+        
