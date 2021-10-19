@@ -1,0 +1,5 @@
+Iteration: 0 | chisq: 2588.731 | step: [-0.596  0.    -0.003  0.051  0.     0.025] | lamda: 0
+Iteration: 1 | chisq: 2577.611 | step: [-0.342 -0.     0.001 -0.032 -0.    -0.003] | lamda: 0
+Iteration: 2 | chisq: 2576.168 | step: [ 0.215  0.    -0.     0.008  0.     0.001] | lamda: 0
+Iteration: 3 | chisq: 2576.153 | step: [-0.064 -0.     0.    -0.003 -0.    -0.   ] | lamda: 0
+Converged after 4 iterations of LM

@@ -1,0 +1,78 @@
+        Problem 1
+
+        For 2501 degrees of freedom,
+        We have chi-squared values of 15267.938772724061 and 3272.203674313185
+        for the test values and the new given values respectively.
+
+        Given that the mean and variance of chi-squared is 
+        2501 and 5002, a fit within one standard deviation would be
+        2501 +- 70.7248188403477. Since both tested parameters have a 
+        chi-squared value outside of this range, these are not a good fit.
+
+        The new tested parameters have a chi-squared closer
+        to the accepted value.
+
+        Problem 2
+
+        We fit the model using an LM fitter and export the paramaters along with
+        the covariance matrix.
+
+        We note that our new chi-squared value 2576.153 is much closer to the accepted value.
+
+        Problem 3
+
+        We fit the model using an MCMC with the covariance matrix from problem 2
+        and export the chain to Results/planck_chain.csv
+
+        We believe the chain has converged since it roughly stabilizes after
+        about 150 steps, and the parameters plot with respect to steps look like noise
+        after removing the burning period. Looking at the FFT of the parameters evolution,
+        we also observe a flat region in the low frequencies, indicating convergence.
+        These plots are produced in display.py and can be found in Results/chain/.
+
+        Moreover, the average chis-squared value
+        after removing the burning period is 2582.1+/-3.5, which is about one standard
+        deviation close to the accepted value presented in problem one.
+
+        After removing the burn-in period, we take the average of the values and 
+        standard errors for the Hubble constant, the Baryon density and the
+        Dark matter density. then solve for the dark energy.
+
+        we find that 
+
+        \Omega_\Lambda = 1 - (100/H_0)^2 (\Omega_C h^2 + \Omega_b h^2)
+
+        which gives us \Omega_\Lambda = 0.700+/-0.012
+
+
+        Problem 4
+        We first compute the results by importance sampling our chain from
+        question 3 and we find a value for 
+        tau =  0.05599778348840123 +- 0.00824244030851979
+        which is close to the prior value, as expected.
+
+        The results for all other parameters are as follows:
+        H0: 67.92812844011891 +- 0.938921130055884
+        Ohmbh2: 0.022373134055725455 +- 0.00020895113689629478
+        Ohmch2: 0.11844042830136989 +- 0.002147200453849252
+        As: 2.0963721853332777e-09 +- 3.369059849030247e-11
+        ns: 0.9716628013621034 +- 0.005409737908135587
+
+
+        Using the same weights from importance sampling, we compute 
+        the covariance matrix which we use in the new mcmc we run with
+        tau prior knowledge.
+
+        we then find the following values:
+
+        H0: 65.07672451718057 +- 1.7822824408227604
+        Ohmbh2: 0.021999131178253938 +- 0.0002534547781496651
+        Ohmch2: 0.126318816031549 +- 0.0046142215544541605
+        Tau: 0.05400000000000002 +- 2.0816681711721685e-17
+        As: 2.129460320423039e-09 +- 2.7027627613090876e-11
+        ns: 0.957095219772533 +- 0.011183986417223277
+
+        While adding the tau prior to the mcmc yielded a tau value closer to
+        prior, the value we obtained with importance sampling was close to
+        the prior already.
+        

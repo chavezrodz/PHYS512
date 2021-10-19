@@ -42,8 +42,8 @@ def problem_3():
         z = (z0 + a*(x_0^2 + y_0^2)) + a * (x^2 + y^2) - 2*a*x*x_0 - 2*a*y*y_0
 
         z = p0 + p1*(x^2 + y^2) - 2*p2*x - 2*p3*y
-        
-        where the new parameters are given by:        
+
+        where the new parameters are given by:
         p0 = (z0 + a*(x_0^2 + y_0^2))
         p1 = a
         p2 = a*x_0
