@@ -1,5 +1,4 @@
 from uncertainties import ufloat
-import shutil
 import os
 import pandas as pd
 import numpy as np
@@ -10,7 +9,6 @@ import time
 
 
 outdir = 'Results'
-# shutil.rmtree(outdir)
 os.makedirs(outdir, exist_ok=True)
 
 data = np.loadtxt('mcmc/COM_PowerSpect_CMB-TT-full_R3.01.txt',
@@ -159,7 +157,6 @@ def problem_3():
         )
 
 
-
 # problem_3()
 
 
@@ -228,9 +225,10 @@ def problem_4():
 
         While adding the tau prior to the mcmc yielded a tau value closer to
         prior, the value we obtained with importance sampling was close to
-        the prior already.
+        the prior already. We also note that running the new chain with
+        the prior yields an error for tau closer to the prior.
         """
         )
 
 
-problem_4()   
+# problem_4()   

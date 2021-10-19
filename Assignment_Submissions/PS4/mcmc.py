@@ -7,6 +7,14 @@ import os
 import time
 
 
+def prior_chisq(pars, par_priors, par_errs):
+    if par_priors is None:
+        return 0
+    idx = np.argwhere(par_errs != np.inf)
+    par_shifts = pars[idx]-par_priors[idx]
+    return np.sum((par_shifts/par_errs[idx])**2)
+
+
 def get_chisq(y_pred, y, Ninv):
     resid=y-y_pred
     if Ninv is not None:
@@ -16,30 +24,23 @@ def get_chisq(y_pred, y, Ninv):
     return chisq
 
 
-def prior_chisq(pars, par_priors, par_errs):
-    if par_priors is None:
-        return 0
-    idx = np.argwhere(par_errs != np.inf)
-    par_shifts = pars[idx]-par_priors[idx]
-    return np.sum((par_shifts/par_errs[idx])**2)
-
-
-def mcmc_step(func, x, y, prev_chisq, Ninv):
+def mcmc_step(func, x, y, prev_chisq, Ninv, par_priors, par_errs):
     try:
         model = func(x, 0, inc_derivs=False)
     except Exception as e:
         print("Trial failed, skipping step")
         return False, None
 
-    chisq = get_chisq(model, y, Ninv)
+    chisq = get_chisq(model, y, Ninv) + prior_chisq(x, par_priors, par_errs)
 
     accept_prob = np.exp(-0.5*(chisq-prev_chisq))
 
     return np.random.rand(1) < accept_prob, chisq
 
 
-def mcmc(func, x, x_cov, y, Ninv=None, niter=1000,
-         par_priors=None, par_errs=None):
+def mcmc(func, x, x_cov, y, niter=1000,
+         Ninv=None, par_priors=None, par_errs=None
+         ):
     outfile = 'planck_chain' if par_priors is None else 'planck_chain_tauprior'
     outfile = 'Results/' + outfile + '.csv'
     fieldnames = ['step', 'chisq', 'time', 'accepted', 'H0', 'Ohmbh2', 'Ohmch2', 'Tau', 'As', 'ns']
@@ -55,8 +56,6 @@ def mcmc(func, x, x_cov, y, Ninv=None, niter=1000,
         prev_chisq = get_chisq(model, y, Ninv)
         prev_chisq += prior_chisq(x, par_priors, par_errs)
 
-    n_x = len(x)
-    n_y = len(y)
     with open(outfile, 'a') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         if step == 0:
@@ -66,8 +65,10 @@ def mcmc(func, x, x_cov, y, Ninv=None, niter=1000,
             start = time.time()
             x_trial = np.random.multivariate_normal(x, x_cov)
 
-            accepted, chisq = mcmc_step(func, x_trial, y, prev_chisq, Ninv)
-            chisq += prior_chisq(x_trial, par_priors, par_errs)
+            accepted, chisq = mcmc_step(
+                func, x_trial, y, prev_chisq,
+                Ninv, par_priors, par_errs
+                )
             if accepted:
                 prev_chisq = chisq
                 x = x_trial

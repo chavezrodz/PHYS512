@@ -65,14 +65,15 @@
 
         we then find the following values:
 
-        H0: 65.07672451718057 +- 1.7822824408227604
-        Ohmbh2: 0.021999131178253938 +- 0.0002534547781496651
-        Ohmch2: 0.126318816031549 +- 0.0046142215544541605
-        Tau: 0.05400000000000002 +- 2.0816681711721685e-17
-        As: 2.129460320423039e-09 +- 2.7027627613090876e-11
-        ns: 0.957095219772533 +- 0.011183986417223277
+        H0: 67.6091941592047 +- 0.9764376518228244
+        Ohmbh2: 0.02229627440193048 +- 0.00021350200067567622
+        Ohmch2: 0.11915778920032613 +- 0.0022245534664059687
+        Tau: 0.05558641896806612 +- 0.00725731871964207
+        As: 2.0990442161658433e-09 +- 3.0614381590035615e-11
+        ns: 0.9695901335849327 +- 0.005387245214991686
 
         While adding the tau prior to the mcmc yielded a tau value closer to
         prior, the value we obtained with importance sampling was close to
-        the prior already.
+        the prior already. We also note that running the new chain with
+        the prior yields an error for tau closer to the prior.
         
