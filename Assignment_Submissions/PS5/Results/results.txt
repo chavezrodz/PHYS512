@@ -1,0 +1,77 @@
+
+        Problem 1
+
+        Shifting Gaussian by 25 points,
+        which translates to dx = 2.50.
+        mean of gaussian is now at 2.5
+        
+
+        Problem 2
+
+        Please find the plot in Results/q2.png
+
+        
+
+        Problem 3)
+
+        By shifting the Gaussian, The correlation function also shifts,
+        expectedly.
+        
+
+        Problem 4)
+
+        If one input array is shorter than the other, we pad it 
+        with zeros so that both arrays are the same length. The
+        output we take is the size of the shorter array.
+
+        
+Input arrays of length 100 & 100
+
+Input arrays of length 100 & 100
+Padding both arrays by 3 on the ends
+
+Input arrays of length 100 & 150
+Different input arrays, padding one
+Arrays now of lengths 150 & 150
+
+Input arrays of length 100 & 150
+Different input arrays, padding one
+Arrays now of lengths 150 & 150
+Padding both arrays by 3 on the ends
+
+
+        Problem 5)
+
+        Please find a) & b) in 5ab.pdf
+
+        c)
+        The Numerical FFT of the sine function agrees with our analytical
+        FFT with average error -4.758e-15
+
+        We have the two expected peaks at +/- k, however, the width of the delta functions
+        is rather broad
+
+        d)
+        We define the window function, and plot the result in 5d.png.
+        We note that the width of the delta function function decreases with windowing,
+        reducing leakage.
+
+        e)
+        We show numerically that the FFT of the window function is [N/2, -N/4, 0, ..., -N/4]
+        by comparing the numerical fft and the suggested array. We obtain the results to agree
+        to machine precision, with average error -8.882e-18
+
+        We show the demonstration of the windowed fft using the previous part in the attached
+        image, then compare 
+            -the fft of a windowed sine wave
+            -the fft of an unwindowed sine wave, windowed using the suggested array
+        Both methods agree to an average error 2.132e-01
+
+
+        
+
+        Problem 6)
+        b)
+        We fit the power spectrum of the random walk with 1/k^2
+        and achieve an average error of 3.431e-02 
+        
