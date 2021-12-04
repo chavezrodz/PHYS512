@@ -4,18 +4,10 @@ from scipy import signal
 from functools import partial
 
 
-def problem2c():
+def problem2c(n, side, edge):
     rho = np.loadtxt('Results/rho.txt')
-    # print(rho.shape)
-    n = 64
-    side = 16
-    edge = 5
+
     nc = n//2
-    plt.plot(rho[nc-side, nc-side:nc+side])
-    plt.show()
-
-    assert False
-
     v = np.zeros((n+1, n+1))
     v[nc-side:nc+side, nc-side:nc+side] = 1
 
@@ -31,9 +23,10 @@ def problem2c():
     v = signal.convolve2d(rho, g, mode='same')
 
     plt.title('Potential Everywhere')    
-    plt.imshow(v, )
+    plt.imshow(v)
     plt.colorbar()
-    plt.contour(v, levels=[0.3, 0.5, 0.8], colors='white')
+    plt.contour(v, colors='white')
+    plt.tight_layout()
     plt.savefig('Results/2c1.png')
     plt.clf()
     plt.close()
@@ -44,23 +37,30 @@ def problem2c():
     plt.title('Magnitude of the Electric Field')
     plt.imshow(mag_grad)
     plt.colorbar()
+    plt.tight_layout()
     plt.savefig('Results/2c2.png')
     plt.clf()
     plt.close()
 
-
-    # dx[mask], dy[mask] = 0, 0
     dx = np.ma.masked_where(mask, dx)
     dy = np.ma.masked_where(mask, dy)
+
     dx, dy = dx[edge:-edge, edge:-edge], dy[edge:-edge, edge:-edge]
+    xx, yy = xx[edge:-edge, edge:-edge], yy[edge:-edge, edge:-edge]
+
+    skip = (slice(None, None, 3), slice(None, None, 3))
 
     fig, ax = plt.subplots()
-    ax.quiver(dx, dy, scale=0.5)
+    extent = nc - edge
+    extent = (-extent, extent, -extent, extent)
+    masked_v = np.ma.masked_where(mask, v)
+    ax.quiver(xx[skip], yy[skip], dx[skip], dy[skip], scale=0.25)
+    ax.imshow(v[edge:-edge, edge:-edge], extent=extent)
+    plt.contour(masked_v[edge:-edge, edge:-edge], colors='white',
+                extent=extent)
     ax.set_title('Electric Field Lines')
     ax.set_aspect('equal')
+    plt.tight_layout()
     plt.savefig('Results/2c3.png')
-    plt.show()
     plt.clf()
     plt.close()
-
-problem2c()

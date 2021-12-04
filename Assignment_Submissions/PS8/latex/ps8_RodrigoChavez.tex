@@ -36,8 +36,7 @@ Potential at [5, 0]: -1.1609640474436809\\
 \end{figure}
 
 \newpage
-b) 
-We now write a conjugate gradient solver to find the charge density on a square box held at V=1. here we present our results for the charge density given the fixed potential.
+b) We now write a conjugate gradient solver to find the charge density on a square box held at V=1. here we present our results for the (absolute) charge density given the fixed potential.
 
 \begin{figure}[h!]
 	\centering
@@ -51,32 +50,33 @@ And the charge density along one side
 	\includegraphics[width=0.25\linewidth]{../Results/2b2.png}
 \end{figure}
 
-We verify our charge density solution by comparing the potential on the square obtained from convolving the density with the green's function, and we obtain an average absolute error in the order of $10^{-15}$, close to machine precision.
+We note that if we consider the square region to be a conductor, it makes physical sense to have a constant potential, Electric field zero inside the conductor, and the charge to lie on the boundary.
+
+We verify our charge density solution by comparing the potential on the square obtained from convolving the density with the green's function, and we obtain an average absolute error in the order of $10^{-12}$.
 
 \newpage
 
 c)
-Convolving our charge density found by conjugate gradient with the green's function, we find the potential everywhere and display it with equipotential lines.
+Convolving our charge density found by conjugate gradient with the green's function, we find the potential everywhere and display it with equipotential lines in white. This is what we expect around the square region, but there is some weird edge effect at the edges of the region.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{../Results/2c1.png}
 \end{figure}
 
-To see how close to constant the potential is in the interior of the box, we compute the gradient of the potential and display its magnitude.
+To see how close to constant the potential is in the interior of the box, we compute the gradient of the potential and display its magnitude. 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\linewidth]{../Results/2c2.png}
+	\includegraphics[width=0.45\linewidth]{../Results/2c2.png}
 \end{figure}
+Unsurprisingly, the magnitude of the electric field is larger for regions around larger charge density as found in b). Interpreting the electric field magnitude, we can say that the potential is close to constant towards the middle of the square. Again, the unexpected potential at the boundaries result in strange electric field behavior around the boundaries. 
 
-Unsurprisingly, the magnitude of the electric field is larger for regions with larger charge density as found in b). Interpreting the electric field magnitude, we can say that the potential is close to constant towards the middle of the square, and varies more towards the edges.
-
-We now look at the electric field line directions just outside of the box
+We now look at the electric field line directions just outside of the box. As expected, The electric field lines are perpendicular to equipotential lines.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\linewidth]{../Results/2c3.png}
+	\includegraphics[width=0.45\linewidth]{../Results/2c3.png}
 \end{figure}
 
 

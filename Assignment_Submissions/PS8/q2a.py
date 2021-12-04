@@ -21,7 +21,7 @@ def average(x):
     return avg
 
 
-def problem1a(n):
+def problem2a(n):
     nc = n//2
     xx, yy = np.mgrid[
         -nc:nc:((n+1)*1j),
@@ -57,6 +57,5 @@ def problem1a(n):
     plt.colorbar()
     plt.tight_layout()
     plt.savefig('Results/2a1.png')
-
-n = 64
-problem1a(n)
+    plt.clf()
+    plt.close()
