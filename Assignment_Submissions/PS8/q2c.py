@@ -33,7 +33,7 @@ def problem2c(n, side, edge):
 
     dx, dy = np.gradient(v)
     mag_grad = np.sqrt(dx**2 + dy**2)
-
+    mag_grad = mag_grad[edge:-edge, edge:-edge]
     plt.title('Magnitude of the Electric Field')
     plt.imshow(mag_grad)
     plt.colorbar()

@@ -13,7 +13,7 @@ sys.stdout = open('Results/results.txt', 'w+')
 n = 128
 side = 16
 edge = 24
-problem2a(n)
-problem2b(n, side)
+# problem2a(n)
+# problem2b(n, side)
 problem2c(n, side, edge)
 sys.stdout.close()
