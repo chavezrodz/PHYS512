@@ -31,7 +31,7 @@ def problem2a(n):
     v = potential(xx, yy)
 
     # Origin average of neighbors
-    v[nc, nc] = v[nc+1, nc] - (v[nc+2, nc] + v[nc+1, nc+1] + v[nc+1, nc-1])
+    v[nc, nc] = 4*v[nc+1, nc] - (v[nc+2, nc] + v[nc+1, nc+1] + v[nc+1, nc-1])
 
     # rescaling
 

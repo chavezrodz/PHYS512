@@ -16,11 +16,11 @@ Please see problem1.pdf file.
 
 a) Now we evaluate log(1/r) to find the potential everywhere but at the origin. Since we know the potential around the origin is the potential of its neighbours, we work out the potential at the origin as follows:
 $$
-	V[1,0] = V[2,0] + V[0,0] + V[1,1] + V[1,-1]
+	V[1,0] = (V[2,0] + V[0,0] + V[1,1] + V[1,-1])/4
 $$
 Rearranging, this yields:
 $$
-	V[0,0] = V[1,0] - V[2,0] - V[1,1] - V[1,-1]
+	V[0,0] = 4V[1,0] - (V[2,0] + V[1,1] + V[1,-1])
 $$
 Computing the asked values, we obtain the following:
 \\
