@@ -10,10 +10,10 @@ os.makedirs('Results', exist_ok=True)
 sys.stdout = open('Results/results.txt', 'w+')
 
 n = 128
-side = 16
-edge = 24
-problem2a(n)
+side = 8
+
+problem2a(2*n)
 problem2b(n, side)
-problem2c(n, side, edge)
+problem2c(n, side)
 
 sys.stdout.close()

@@ -4,8 +4,16 @@ from scipy import signal
 from functools import partial
 
 
-def Ax(rho, mask, g):
-    return signal.convolve2d(rho, g, mode='same', )*mask
+def Ax(rho, g, mask=None):
+    if mask is not None:
+        rho = rho.copy()*mask
+
+    out = signal.convolve2d(rho, g, mode='same')
+
+    if mask is not None:
+        out = out*mask
+
+    return out
 
 
 def conjugate_gradient(x, b, func, niter):
@@ -39,14 +47,13 @@ def problem2b(n, side, niter=100):
         -nc:nc:((n+1)*1j),
         -nc:nc:((n+1)*1j)
         ]
-
     g = np.loadtxt('Results/greens.txt')
 
     v = np.zeros((n+1, n+1))
     v[nc-side:nc+side, nc-side:nc+side] = 1
 
     mask = v > 0
-    myfunc = partial(Ax, mask=mask, g=g)
+    myfunc = partial(Ax, g=g, mask=mask)
 
     rho = np.zeros((n+1, n+1))
 
